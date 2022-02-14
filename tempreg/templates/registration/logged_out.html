@@ -1,0 +1,9 @@
+{% extends "base/header.html" %}
+{% block title %}Logged out{% endblock %}
+{% block content %}
+<h1>Logged out</h1>
+<p>
+You have been successfully logged out.
+You can <a href="{% url 'tempreg:login' %}">log-in again</a>.
+</p>
+{% endblock %}

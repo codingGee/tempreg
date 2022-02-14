@@ -1,0 +1,39 @@
+{% extends "base/header.html" %}
+{% block title %}Sign-in{% endblock %}
+{% block content %}
+{% load widget_tweaks %}
+    <div class="container">
+        <div class="row mt-5">
+          <div class="col-md-4 m-auto">
+            <div class="card card-body">
+              <h1 class="text-center mb-3"><i class="fas fa-sign-in-alt"></i>  Login</h1>
+              <form action="" method="post">
+                <input type="hidden" name="ci_csrf_token" value="">
+                <h4 class="text-center">Sign In</h4>
+                <p class="text-center">Enter Login Details to Access Dashboard</p>
+                <hr> {% csrf_token %} 
+                <div class="form-group">
+                    <label>Username</label>
+                    <div class="input-group">
+                        {{ form.username|add_class:'form-control'|attr:'placeholder:Email address' }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <div class="input-group">
+                        {{ form.password|add_class:'form-control'|attr:'placeholder:Password' }}
+                    </div>
+                </div>
+    
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary btn-lg">Sign In</button>
+                </div>
+            </form>
+              <p class="lead mt-4">
+                No Account? <a class="text-decoration-none" href="">Register</a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    {% endblock %}

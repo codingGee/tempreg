@@ -1,0 +1,26 @@
+{% extends "base/header.html" %}
+{% block title %}Sign-up{% endblock %}
+{% block content %}
+
+
+  <div class="container">
+    <div class="row mt-5">
+      <div class="col-md-6 m-auto">
+        <div class="card card-body">
+          <h1 class="text-center mb-3">
+            <i class="fas fa-user-plus"></i> Register
+          </h1>
+            <p class="text-center">Please fill in this form to create an account!</p>
+            <hr>
+            <form method="post">
+              {{ user_form.as_p }}
+              {% csrf_token %}
+              <p><input type="submit" value="Create my account"></p>
+            </form>
+          <p class="lead mt-4 text-center">Have An Account? <a class="text-decoration-none"
+              href="{% url 'tempreg:login' %}">Login</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
