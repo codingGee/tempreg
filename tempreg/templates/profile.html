@@ -4,76 +4,82 @@
 {% load widget_tweaks %}
 <div class="wrapper d-flex align-items-stretch">
   {% include 'base/dashboard_nav.html' %}
-      <div id="content" class="p-4 p-md-5 pt-5">
-        <h1 class="mt-4">User Profile</h1>
-        <h4 class="lead mb-3"> Hello, {{ request.user.first_name }} 
-        </h4>
-        <div class="card">
-          <h1 class="text-center m-1">
-            <i class="fas fa-user"></i> Profile
-          </h1>
-          <div class="row">
-            <div class="col-md-4">
-              <div class="user__image mx-4 mt-4">
-                <img class="mt-2 rounded" id="output" width="100%"/>
-                <!-- image render  -->
-                <h3 class="mx-3">Vehicle Owner</h3>
+  <div id="content" class="p-4 p-md-5 pt-5">
+    <h1 class="mt-4">User Profile</h1>
+    <h4 class="lead mb-3"> Hello, {{ request.user.first_name }}
+    </h4>
+    <div class="card">
+      <h1 class="text-center m-1">
+        <i class="fas fa-user"></i> Profile
+      </h1>
+      <p class="text-center">You can edit your account using the following form:</p>
+      {% if messages %}
+      <ul class="messages">
+        {% for message in messages %}
+        <li class="{{ message.tags }}">
+          {{ message|safe }}
+          <a href="#" class="close">x</a>
+        </li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+      <div class="row">
+        <!-- <div class="col-md-4">
+          <div class="user__image mx-4 mt-4">
+            <img class="mx-2 rounded" src="{{ user.profile.photo.url}}" id="output" width="80%" />
+            <h3 class="mx-3">Vehicle Owner</h3>
+          </div>
+        </div> -->
+        <div class="col-md-8 m-auto">
+          <div class="card-body">
+            <form method="POST" enctype="multipart/form-data">
+              {% csrf_token %}
+              <div class="row">
+                <div class="col-lg form-group">
+                  <label>Firstname</label>
+                  <div class="input-group">
+                    {{ user_form.first_name|add_class:'form-control'|attr:'placeholder:' }}
+                  </div>
+                </div>
+                <div class="col-lg form-group">
+                  <label>Lastname</label>
+                  <div class="input-group">
+                    {{ user_form.last_name|add_class:'form-control'|attr:'placeholder:'}}
+                  </div>
+                </div>
               </div>
-            </div>
-            <div class="col-md-8 m-auto">
-              <div class="card-body">
-                <form method="POST" enctype="multipart/form-data">
-                  {% csrf_token %}
-                  <div class="row">
-                    <div class="col-md-6 form-group">
-                      <label for="firstname">Select user</label>
-                      {{ profile_form.user|add_class:'form-control'|attr:'placeholder:User' }}
-                    </div>
-                    <div class="col-md-6 form-group">
-                      <label for="lastname">Choose Image</label>
-                      {{ profile_form.user_image|add_class:'form-control'|attr:'placeholder:Profile Image' }}
-                    </div>
+              <div class="row">
+                <div class="col-lg form-group">
+                  <label>Email</label>
+                  <div class="input-group">
+                    {{ user_form.email|add_class:'form-control'|attr:'placeholder:'}}
                   </div>
-                  <div class="row">
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label for="email">Email</label>
-                        {{ profile_form.email|add_class:'form-control'|attr:'placeholder:Email' }}
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label for="contact">Contact</label>
-                        {{ profile_form.contact|add_class:'form-control'|attr:'placeholder:Contact' }}
-                      </div>
-                    </div>
+                </div>
+                <div class="col-lg form-group">
+                  <label>Date of Birth</label>
+                  <div class="input-group">
+                    {{ profile_form.date_of_birth|add_class:'form-control'|attr:'placeholder:'}}
                   </div>
-                  <!-- <div class="row">
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label for="address">Address</label>
-                        <input type="text" id="address" name="address" class="form-control" value="House 33, Tombia street"
-                        />
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label for="id">ID No</label>
-                        <input type="text" id="id" name="id" class="form-control" placeholder="Enter Email" value="0000001"
-                        />
-                      </div>
-                    </div>
-                  </div> -->
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-12 ">
+                  <label>Upload Photo</label>
                   <div class="">
-                    <button type="submit" class="btn btn-primary mt-3 w-25 font-weight-bolder">
-                    Save Changes
-                    </button>
+                    {{ profile_form.photo|add_class:'form-control'|attr:'placeholder:'}}
                   </div>
-                </form>
+                </div>
               </div>
-            </div>
+              <div class="">
+                <button type="submit" class="btn btn-primary mt-3 w-25 font-weight-bolder">
+                  Save Changes
+                </button>
+              </div>
+            </form>
           </div>
         </div>
       </div>
+    </div>
   </div>
+</div>
 {% endblock %}

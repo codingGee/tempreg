@@ -2,7 +2,7 @@ from django.contrib import messages
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
-from django.views.generic import ListView
+from django.views.generic import TemplateView, ListView
 from django.db.models import Q 
 from django.contrib.auth.models import User
 from .models import Gallery, Profile
@@ -38,6 +38,10 @@ def dashboard(request, pk=None):
         args = {'user': user}
     return render(request, 'dashboard.html', args)
 
+# settings
+@login_required
+def settings(request):
+    return render(request, 'settings.html')
 
 # register view 
 def register(request):
@@ -73,7 +77,7 @@ def edit(request):
         user_form = UserEditForm(instance=request.user)
         profile_form = ProfileEditForm(instance=request.user.profile)
         
-    return render(request, 'edit.html', {'user_form': user_form, 'profile_form':profile_form})
+    return render(request, 'profile.html', {'user_form': user_form, 'profile_form':profile_form})
 
 # gallery view 
 def gallery(request):
@@ -107,3 +111,7 @@ class SearchResultsView(ListView):
             Q(username=query) | Q(email=query)
         )
         return object_list
+
+# public views 
+class HomeView(TemplateView):
+    template_name = 'index.html'

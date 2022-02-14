@@ -1,8 +1,7 @@
 {% extends "base/header.html" %}
 {% block title %}Sign-up{% endblock %}
 {% block content %}
-
-
+{% load widget_tweaks %}
   <div class="container">
     <div class="row mt-5">
       <div class="col-md-6 m-auto">
@@ -13,8 +12,49 @@
             <p class="text-center">Please fill in this form to create an account!</p>
             <hr>
             <form method="post">
-              {{ user_form.as_p }}
               {% csrf_token %}
+              <div class="row">
+                <div class="col-lg form-group">
+                  <label>Username</label>
+                  <div class="input-group">
+                      {{ user_form.username|add_class:'form-control'|attr:'placeholder:' }}
+                  </div>
+                </div>
+                <div class="col-lg form-group">
+                  <label>Email</label>
+                  <div class="input-group">
+                      {{ user_form.email|add_class:'form-control'|attr:'placeholder:'}}
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg form-group">
+                  <label>Firstname</label>
+                  <div class="input-group">
+                      {{ user_form.first_name|add_class:'form-control'|attr:'placeholder:' }}
+                  </div>
+                </div>
+                <div class="col-lg form-group">
+                  <label>Lastname</label>
+                  <div class="input-group">
+                      {{ user_form.last_name|add_class:'form-control'|attr:'placeholder:'}}
+                  </div>
+                </div>
+              </div>
+              <div class="row mb-3">
+                <div class="col-lg form-group">
+                  <label>Password</label>
+                  <div class="input-group">
+                      {{ user_form.password|add_class:'form-control'|attr:'placeholder:' }}
+                  </div>
+                </div>
+                <div class="col-lg form-group">
+                  <label>Confirm Password</label>
+                  <div class="input-group">
+                      {{ user_form.password2|add_class:'form-control'|attr:'placeholder:'}}
+                  </div>
+                </div>
+              </div>
               <p><input type="submit" value="Create my account"></p>
             </form>
           <p class="lead mt-4 text-center">Have An Account? <a class="text-decoration-none"
