@@ -26,6 +26,8 @@ urlpatterns = [
     # register url 
     path('register/', views.register, name='register'),
     path('edit/', views.edit, name='edit'),
+    path('car_edit/', views.carProfile, name="car_edit"),
+    path('car_profile/', views.carEdit, name="car_profile"),
     # car gallery
     path('gallery', views.gallery, name='gallery'),
     path('car_images', views.gallery_view, name="car_images" ),

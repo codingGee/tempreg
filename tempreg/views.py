@@ -6,7 +6,7 @@ from django.views.generic import TemplateView, ListView
 from django.db.models import Q 
 from django.contrib.auth.models import User
 from .models import Gallery, Profile
-from .forms import CarPhoto, LoginForm, UserRegistrationForm, UserEditForm, ProfileEditForm
+from .forms import CarEditForm, CarPhoto, LoginForm, UserRegistrationForm, UserEditForm, ProfileEditForm
 from django.contrib.auth.decorators import login_required
 
 # login view 
@@ -37,6 +37,25 @@ def dashboard(request, pk=None):
         user = request.user
         args = {'user': user}
     return render(request, 'dashboard.html', args)
+
+
+# vehicle edit 
+@login_required
+def carProfile(request):
+    return render(request, 'vehicle_profile.html')
+
+@login_required
+def carEdit(request):
+    if request.method == "POST":
+        user_form = CarEditForm(request.POST)
+        if user_form.is_valid():
+            user_form.save()
+            messages.success(request, 'Car information updated sucessful')
+        else:
+            messages.error(request, 'Error updating your Car information')
+    else:
+        user_form = CarEditForm()
+    return render(request, 'car_profile.html', {'user_form': user_form})
 
 # settings
 @login_required
@@ -78,6 +97,7 @@ def edit(request):
         profile_form = ProfileEditForm(instance=request.user.profile)
         
     return render(request, 'profile.html', {'user_form': user_form, 'profile_form':profile_form})
+
 
 # gallery view 
 def gallery(request):

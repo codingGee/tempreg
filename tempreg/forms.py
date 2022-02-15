@@ -2,7 +2,7 @@ from pyexpat import model
 from django import forms
 from django.contrib.auth.models import User
 
-from .models import Gallery, Profile
+from .models import Car, Gallery, Profile
 
 # login form 
 class LoginForm(forms.Form):
@@ -38,4 +38,8 @@ class ProfileEditForm(forms.ModelForm):
 class CarPhoto(forms.ModelForm):
     class Meta:
         model = Gallery
+        fields = '__all__'
+class CarEditForm(forms.ModelForm):
+    class Meta:
+        model = Car
         fields = '__all__'
