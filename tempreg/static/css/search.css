@@ -1,11 +1,11 @@
-/* #searchBar {
+.searchBar {
     width: 50%;
     height: 32px;
     border-radius: 3px;
     border: 1px solid #eaeaea;
     padding: 5px 10px;
     font-size: 14px;
-} */
+}
 
 #searchWrapper {
     position: relative;

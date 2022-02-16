@@ -127,9 +127,12 @@ class SearchResultsView(ListView):
 
     def get_queryset(self): # new
         query = self.request.GET.get('q')
-        object_list = User.objects.filter(
-            Q(username=query) | Q(email=query)
-        )
+        if query == '':
+            object_list = ''
+        else:
+            object_list = User.objects.filter(
+                Q(username=query) | Q(email=query)
+            )
         return object_list
 
 # public views 

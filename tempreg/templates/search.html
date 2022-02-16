@@ -2,10 +2,13 @@
 {% block title %}Tempreg | Search{% endblock %}
 {% block content %}
 <div class="">
-  <h1 class="text-center mt-5">Tempreg Cars</h1>
+  <h1 class="text-center mt-5">Tempreg Profile Search </h1>
+  <p class="text-center">
+    <code>Search with either a username or an email</code>
+  </p>
   <div class="d-flex justify-content-center mt-3" id="searchWrapper">
     <form action="{% url 'tempreg:search' %}" method="get">
-      <input name="q" type="text" placeholder="Search...">
+      <input name="q" type="text" placeholder="Search..." class="searchBar">
     </form>
   </div>
 
