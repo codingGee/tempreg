@@ -1,5 +1,3 @@
-from re import M
-from tabnanny import verbose
 from django.db import models
 from django.conf import settings
 
