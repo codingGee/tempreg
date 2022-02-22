@@ -1,1 +1,1 @@
-web: gunicorn tempreg.wsgi --log-file -
+web:gunicorn tempreg.wsgi --log-file -
