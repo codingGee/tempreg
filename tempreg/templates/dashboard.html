@@ -1,0 +1,49 @@
+{% extends "base/header.html" %}
+{% block title %}Dashboard | Tempreg{% endblock %}
+{% block content %}
+    <div class="wrapper d-flex align-items-stretch">
+        {% include 'base/dashboard_nav.html' %}
+        <div id="content" class="p-4 p-md-5 pt-5">
+            <h1 class="mt-4">Dashboard</h1>
+            <h4 class="lead mb-3">Hello, {{ request.user.first_name }} </h4>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="col-lg-12">
+                        <div class="card db__card mb-3">
+                            <div class="card-body">
+                                <div class="row">
+                                    {% if user.profile.photo %}
+                                    <div class="col-lg-5">
+                                        <img src="{{ user.profile.photo.url}}" alt="profile image" width="50%">
+                                    </div>
+                                    {% endif %}
+                                    <div class="col-lg">
+                                        <p class="lead mx-3"> Name:
+                                            {{ request.user.first_name }}
+                                            {{ request.user.last_name }}
+                                        </p>
+                                        <p class="lead mx-3"> Email:
+                                            {{ request.user.email }}
+                                        </p>
+                                        <p class="lead mx-3">Phone:
+                                           {{request.user.profile.phone}}
+                                        </p>
+                                        <p class="lead mx-3">Phone:
+                                            {{request.user.profile.city}}
+                                         </p>
+                                        <div class="row">
+                                            <div class="col">
+                                                <p class="lead mx-3">ID number: 0x0121</p>
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+{% endblock %}

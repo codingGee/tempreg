@@ -1,0 +1,35 @@
+{% extends "base/header.html" %}
+{% block title %}Vehicl Profile{% endblock %}
+{% block content %}
+<div class="wrapper d-flex align-items-stretch">
+  {% include 'base/dashboard_nav.html' %}
+      <div id="content" class="p-4 p-md-5 pt-5">
+        <h1 class="mt-4">User Profile</h1>
+        <h4 class="lead mb-3">Welcome {{request.user.first_name}}
+        </h4>
+        <div class="card">
+          <h1 class="text-center m-1">
+            <i class="fas fa-user"></i> Car Information
+          </h1>
+          <div class="row">
+            <div class="col-md-5">
+              <div class="user__image mx-4 mt-3 mb-4">
+                <img src="{{ user.car.photo.url}}" class="mt-2 rounded" id="output" width="100%"/>
+
+              </div>
+            </div>
+            <div class="col-md-5 m-auto">
+              <div class="card-body">
+                <div class="card-title">
+                  <p class="fs-1">Car Name: {{ user.car.name }}</p>
+                  <p class="">Car Model: {{ user.car.model }} </p>
+                  <p class="">Car Vin: {{ user.car.vin }} </p>
+                  <p class="">Car Year: {{ user.car.year }} </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+{% endblock %}

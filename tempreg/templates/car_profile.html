@@ -1,0 +1,85 @@
+{% extends "base/header.html" %}
+{% block title %}Create Car Profile{% endblock %}
+{% block content %}
+{% load widget_tweaks %}
+<div class="wrapper d-flex align-items-stretch">
+  {% include 'base/dashboard_nav.html' %}
+  <div id="content" class="p-4 p-md-5 pt-5">
+    <h1 class="mt-4">Car Profile</h1>
+    <h4 class="lead mb-3"> Hello, {{ request.user.first_name }}
+    </h4>
+    <div class="card">
+      <h2 class="text-center m-1">
+        <i class="fas fa-car"></i> Create Car Profile
+      </h2>
+      <p class="text-center">You can edit your account using the following form:</p>
+      {% if messages %}
+      <ul class="messages">
+        {% for message in messages %}
+        <li class="{{ message.tags }}">
+          {{ message|safe }}
+          <a href="#" class="close">x</a>
+        </li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+      <div class="row">
+        <!-- <div class="col-md-4">
+          <div class="user__image mx-4 mt-4">
+            <img class="mx-2 rounded" src="{{ user.profile.photo.url}}" id="output" width="80%" />
+            <h3 class="mx-3">Vehicle Owner</h3>
+          </div>
+        </div> -->
+        <div class="col-md-8 m-auto">
+          <div class="card-body">
+            <form method="POST" enctype="multipart/form-data">
+              {% csrf_token %}
+              <div class="row">
+                <div class="col-lg form-group">
+                  <label>Car name</label>
+                  <div class="input-group">
+                    {{ user_form.name|add_class:'form-control'|attr:'placeholder:' }}
+                  </div>
+                </div>
+                <div class="col-lg form-group">
+                  <label>Car Model</label>
+                  <div class="input-group">
+                    {{ user_form.model|add_class:'form-control'|attr:'placeholder:'}}
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg form-group">
+                  <label>Car Vin</label>
+                  <div class="input-group">
+                    {{ user_form.vin|add_class:'form-control'|attr:'placeholder:'}}
+                  </div>
+                </div>
+                <div class="col-lg form-group">
+                  <label>Car Year</label>
+                  <div class="input-group">
+                    {{ user_form.year|add_class:'form-control'|attr:'placeholder:'}}
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-12 ">
+                  <label>Upload Photo</label>
+                  <div class="">
+                    {{ user_form.photo|add_class:'form-control'|attr:'placeholder:'}}
+                  </div>
+                </div>
+              </div>
+              <div class="">
+                <button type="submit" class="btn btn-primary mt-3 font-weight-bolder">
+                  Save Changes
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

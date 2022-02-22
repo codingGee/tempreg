@@ -1,0 +1,41 @@
+{% extends "base/header.html" %}
+{% block title %}Tempreg | Search{% endblock %}
+{% block content %}
+<div class="">
+  <h1 class="text-center mt-5">Tempreg Profile Search </h1>
+  <p class="text-center">
+    <code>Search with either a username or an email</code>
+  </p>
+  <div class="d-flex justify-content-center mt-3" id="searchWrapper">
+    <form action="{% url 'tempreg:search' %}" method="get">
+      <input name="q" type="text" placeholder="Search..." class="searchBar">
+    </form>
+  </div>
+
+  <div class="container mt-5">
+    {% for user in object_list %}
+    <div class="card col-md-10 p-3">
+      <div class="row">
+        <div class="col-md-3">
+          <img src="{{user.profile.photo.url }}" alt="profile photo" srcset="" width="80%">
+        </div>
+        <div class="col-md-3">
+          <p class="text-start mt-3"> Name: {{ user.first_name }} {{ user.last_name }}</p>
+          <p class="">Phone: +234-{{ user.profile.phone }}</p>
+          <p class="">City : {{ user.profile.city }}</p>
+          <p class="">Car : {{ user.car.name }}</p>
+          <p class="">Model : {{ user.car.model }}</p>
+          <p class="">Year: {{ user.car.year }}</p>
+          <p class="">Vin: {{ user.car.vin }}</p>
+        </div>
+        <div class="col-md">
+          <img src="{{user.car.photo.url }}" alt="car profile pic" srcset="" width="80%">
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+
+  </div>
+</div>
+
+{% endblock %}

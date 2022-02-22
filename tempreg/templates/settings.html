@@ -1,0 +1,23 @@
+{% extends "base/header.html" %}
+{% block title %}Settings{% endblock %}
+{% block content %}
+{% load widget_tweaks %}
+<div class="wrapper d-flex align-items-stretch">
+    {% include 'base/dashboard_nav.html' %}
+    <div id="content" class="p-4 p-md-5 pt-5">
+        <h1 class="mt-4">Dashboard</h1>
+        <h4 class="lead mb-3">Welcome, {{ request.user.first_name }} </h4>    
+        <div class="">
+          <div class="row mt-5">
+            <div class="col-md-4   m-auto">
+              <div class="card card-body">
+                <a href="{% url 'tempreg:password_change' %}" class="mb-3">
+                  <i class="fas fa-user-plus"></i> Change Password
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+  </div>
+{% endblock %}
