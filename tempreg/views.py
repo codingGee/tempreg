@@ -54,7 +54,7 @@ def carEdit(request):
         else:
             messages.error(request, 'Error updating your Car information')
     else:
-        user_form = CarEditForm()
+        user_form = CarEditForm(instance=request.user)
     return render(request, 'car_profile.html', {'user_form': user_form})
 
 # settings
@@ -98,8 +98,8 @@ def edit(request):
         
     return render(request, 'profile.html', {'user_form': user_form, 'profile_form':profile_form})
 
-
 # gallery view 
+@login_required
 def gallery(request):
     if request.method == "POST":
         gallery_form = CarPhoto(request.POST, request.FILES)
@@ -109,16 +109,17 @@ def gallery(request):
         else:
             messages.error(request, 'Error uploading your imagee')
     else:
-        gallery_form = CarPhoto()
-    return render(request, 'car_image.html', {'gallery_form':gallery_form})
+        gallery_form = CarPhoto(instance=request.user)
+    return render(request, 'create_gallery.html', {'gallery_form':gallery_form})
 
 
 # view images from galler 
+@login_required
 def gallery_view(request):
     if request.method == 'GET':
         # getting all the objects of gallery
         car_image = Gallery.objects.all()
-        return render(request, 'car_image_view.html', {'car_image' : car_image})
+        return render(request, 'view_gallery.html', {'car_image' : car_image})
     
 # search view 
 class SearchResultsView(ListView):
