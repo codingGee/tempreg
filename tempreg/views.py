@@ -45,16 +45,19 @@ def carProfile(request):
     return render(request, 'vehicle_profile.html')
 
 @login_required
-def carEdit(request):
+def carCreate(request):
     if request.method == "POST":
-        user_form = CarEditForm(request.POST)
+        user_form = CarEditForm(request.POST,request.FILES)
         if user_form.is_valid():
-            user_form.save()
+            user_form.instance.user = request.user
+            print(user_form.cleaned_data)
+            # user_form.save()
             messages.success(request, 'Car information updated sucessful')
         else:
+            print(user_form.errors)
             messages.error(request, 'Error updating your Car information')
     else:
-        user_form = CarEditForm(instance=request.user)
+        user_form = CarEditForm()
     return render(request, 'car_profile.html', {'user_form': user_form})
 
 # settings

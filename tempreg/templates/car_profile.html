@@ -18,7 +18,7 @@
         {% for message in messages %}
         <li class="{{ message.tags }}">
           {{ message|safe }}
-          <a href="{% url 'tempreg:car_edit'%}" class="close">x</a>
+          <a href="{% url 'tempreg:car_profile'%}" class="close">x</a>
         </li>
         {% endfor %}
       </ul>

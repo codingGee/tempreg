@@ -27,7 +27,7 @@ urlpatterns = [
     path('register/', views.register, name='register'),
     path('edit/', views.edit, name='edit'),
     path('car_profile/', views.carProfile, name="car_profile"),
-    path('car_edit/', views.carEdit, name="car_edit"),
+    path('car_edit/', views.carCreate, name="car_edit"),
     # car gallery
     path('gallery', views.gallery, name='gallery'),
     path('car_images', views.gallery_view, name="car_images" ),
