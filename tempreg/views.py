@@ -5,7 +5,7 @@ from django.contrib.auth import authenticate, login
 from django.views.generic import TemplateView, ListView
 from django.db.models import Q 
 from django.contrib.auth.models import User
-from .models import Gallery, Profile
+from .models import Car, Gallery, Profile
 from .forms import CarEditForm, CarPhoto, LoginForm, UserRegistrationForm, UserEditForm, ProfileEditForm
 from django.contrib.auth.decorators import login_required
 
@@ -42,8 +42,11 @@ def dashboard(request, pk=None):
 # vehicle edit 
 @login_required
 def carProfile(request):
-    return render(request, 'vehicle_profile.html')
+    car_info = Car.objects.filter(user=request.user)
+    print(car_info)
+    return render(request, 'vehicle_profile.html', {'car_info':car_info})
 
+# car create form
 @login_required
 def carCreate(request):
     if request.method == "POST":
@@ -51,7 +54,7 @@ def carCreate(request):
         if user_form.is_valid():
             user_form.instance.user = request.user
             print(user_form.cleaned_data)
-            # user_form.save()
+            user_form.save()
             messages.success(request, 'Car information updated sucessful')
         else:
             print(user_form.errors)
@@ -121,7 +124,7 @@ def gallery(request):
 def gallery_view(request):
     if request.method == 'GET':
         # getting all the objects of gallery
-        car_image = Gallery.objects.all()
+        car_image = Gallery.objects.filter(user=request.user)
         return render(request, 'view_gallery.html', {'car_image' : car_image})
     
 # search view 

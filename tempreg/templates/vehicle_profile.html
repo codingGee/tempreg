@@ -1,5 +1,5 @@
 {% extends "base/header.html" %}
-{% block title %}Vehicl Profile{% endblock %}
+{% block title %}Vehicle Profile{% endblock %}
 {% block content %}
 <div class="wrapper d-flex align-items-stretch">
   {% include 'base/dashboard_nav.html' %}
@@ -14,7 +14,7 @@
           <div class="row">
             <div class="col-md-5">
               <div class="user__image mx-4 mt-3 mb-4">
-                <img src="{{ request.user.car.photo.url}}" class="mt-2 rounded" id="output" width="100%"/>
+                <img src="{{ request.user.car.photo.url }}" class="mt-2 rounded" id="output" width="100%"/>
 
               </div>
             </div>

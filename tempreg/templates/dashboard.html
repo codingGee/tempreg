@@ -14,7 +14,7 @@
                                 <div class="row">
                                     {% if user.profile.photo %}
                                     <div class="col-lg-5">
-                                        <img src="{{ user.profile.photo.url}}" alt="profile image" width="50%">
+                                        <img class="mt-2" src="{{ user.profile.photo.url}}" alt="profile image" width="100%">
                                     </div>
                                     {% endif %}
                                     <div class="col-lg">
@@ -32,7 +32,7 @@
                                             {{request.user.profile.city}}
                                          </p>
                                         <div class="row">
-                                            <div class="col">
+                                            <div class="col">   
                                                 <p class="lead mx-3">ID number: 0x0121</p>
                                             </div>
                                             <div class="col">
