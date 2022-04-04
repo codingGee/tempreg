@@ -8,7 +8,8 @@ from django.contrib.auth.models import User
 from .models import Car, Gallery, Profile
 from .forms import CarEditForm, CarPhoto, LoginForm, UserRegistrationForm, UserEditForm, ProfileEditForm
 from django.contrib.auth.decorators import login_required
-
+from django.utils.decorators import method_decorator
+from django.contrib.auth.mixins import PermissionRequiredMixin
 # login view 
 def user_login(request):
     if request.method == "POST":
@@ -128,11 +129,17 @@ def gallery_view(request):
         return render(request, 'view_gallery.html', {'car_image' : car_image})
     
 # search view 
-class SearchResultsView(ListView):
+@method_decorator(login_required, name='dispatch')
+class SearchResultsView(PermissionRequiredMixin, ListView):
     model = User
     template_name = 'search.html'
-
-    def get_queryset(self): # new
+    login_url = 'tempreg:login'
+    permission_required = 'tempreg.special_status'
+    raise_exception = True  # Raise exception when no access instead of redirect
+    permission_denied_message = "You are not allowed here."
+    
+    
+    def get_queryset(self): 
         query = self.request.GET.get('q')
         if query == '':
             object_list = ''

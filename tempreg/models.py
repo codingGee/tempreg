@@ -10,6 +10,10 @@ class Profile(models.Model):
   
   class Meta:
       verbose_name_plural = 'profile'
+      permissions = [
+      ('special_status', 'Can view user')
+    ]
+  
   
   def __str__(self):
     return f'Profile for user {self.user.username}'
@@ -38,7 +42,7 @@ class Car(models.Model):
   
   class Meta:
     verbose_name_plural = 'car'
-  
+   
   def __str__(self):
     return self.name
   

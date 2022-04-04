@@ -1,0 +1,103 @@
+virtualenv activation linux and windows
+
+source venv/bin/activate && cd expressreliance && python3 manage.py runserver 127.0.0.1:1211
+
+\venv\Scripts\activate.bat
+
+python manage.py makemigrations && python manage.py migrate
+
+
+
+python3 manage.py makemigrations && python3 manage.py migrate
+
+sudo apt-get install  postgresql postgresql-contrib
+
+celery -A myposbook worker -l info
+celery -A myposbook.celeryapp beat -l INFO --scheduler django_celery_beat.schedulers.DatabaseScheduler
+
+
+CREATE DATABASE expressreliance;
+CREATE USER expressreliance WITH PASSWORD 'expressreliance';
+ALTER ROLE expressreliance SET client_encoding TO 'utf8';
+ALTER ROLE expressreliance SET default_transaction_isolation TO 'read committed';
+ALTER ROLE expressreliance SET timezone TO 'UTC';
+GRANT ALL PRIVILEGES ON DATABASE expressreliance TO expressreliance;
+
+
+[Unit]
+Description=gunicorn daemon
+After=network.target
+
+[Service]
+User=myposbook
+Group=www-data
+WorkingDirectory=/home/myposbook/myposbook/myposbook/
+ExecStart=/home/myposbook/venv/bin/gunicorn --access-logfile - --workers 3 --bind unix:/home/myposbook/myposbook.sock myposbook.wsgi:application
+
+[Install]
+WantedBy=multi-user.target
+
+
+
+server {
+    listen 80;
+    server_name myposbook.com.ng;
+
+    location = /favicon.ico { access_log off; log_not_found off; }
+    location /static/ {
+        root /home/myposbook/myposbook/myposbook;
+    }
+
+    location / {
+        include proxy_params;
+        proxy_pass http://unix:/home/myposbook/myposbook.sock;
+    }
+}
+
+ssh root@185.3.94.252
+
+linode access
+sudo su myposbook
+S$69JTN6q6mpe#4
+
+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
+
+{% comment %} daemon reload features {% endcomment %}
+sudo systemctl daemon-reload && sudo systemctl restart gunicorn
+
+
+sudo nano /etc/nginx/sites-available/myposbook
+
+sudo ln -s /etc/nginx/sites-available/myposbook /etc/nginx/sites-enabled
+
+cp -r ./frontend/dashboard/static/stylesheets/dasboard.css ./myposbook/merchant_account/static/stylesheets
+cp -r ./frontend/static/stylesheets/style.css ./myposbook/home/static/stylesheets
+
+
+
+curl -L -X POST 'https://r5vdnl.api.infobip.com/sms/1/text/advanced' \
+-H 'Authorization: 28033c78d0e92e1c0f04fdbb68023e71-52b58e02-d48b-45c5-a51b-0d4d055bb5d1' \
+-H 'Content-Type: application/json' \
+-H 'Accept: application/json' \
+--data-raw '{
+  "messages": [
+    {
+      "from": "InfoSMS",
+      "destinations": [
+        {
+          "to": "23411714208"
+        }
+      ],
+      "text": "This is a sample message"
+    }
+  ]
+}'
+
+
+
+
+sudo nano /etc/supervisor/conf.d/celery.conf
+sudo nano /etc/supervisor/conf.d/celery-beat.conf
+
+sudo rm -rf /etc/supervisor/conf.d/celery.conf
+sudo rm -rf /etc/supervisor/conf.d/celery-beat.conf
