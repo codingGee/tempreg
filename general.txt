@@ -1,103 +1,61 @@
-virtualenv activation linux and windows
+source venv/bin/activate && cd tempreg
+python manage.py runserver localhost:9234
 
-source venv/bin/activate && cd expressreliance && python3 manage.py runserver 127.0.0.1:1211
+tEm@22preg
 
-\venv\Scripts\activate.bat
+ssh root@159.223.15.102
 
-python manage.py makemigrations && python manage.py migrate
+pirateworldcc
 
+'' SELECT 'DROP TABLE IF EXISTS "' || tempreg || '" CASCADE;' from pg_tables WHERE schemaname = 'public'; ''
 
-
-python3 manage.py makemigrations && python3 manage.py migrate
-
-sudo apt-get install  postgresql postgresql-contrib
-
-celery -A myposbook worker -l info
-celery -A myposbook.celeryapp beat -l INFO --scheduler django_celery_beat.schedulers.DatabaseScheduler
+CREATE DATABASE tempreg_postgres;
+CREATE USER tempreg_admin WITH PASSWORD 'tempreg@22';
 
 
-CREATE DATABASE expressreliance;
-CREATE USER expressreliance WITH PASSWORD 'expressreliance';
-ALTER ROLE expressreliance SET client_encoding TO 'utf8';
-ALTER ROLE expressreliance SET default_transaction_isolation TO 'read committed';
-ALTER ROLE expressreliance SET timezone TO 'UTC';
-GRANT ALL PRIVILEGES ON DATABASE expressreliance TO expressreliance;
+ALTER ROLE tempreg_admin SET client_encoding TO 'utf8';
+ALTER ROLE tempreg_admin SET default_transaction_isolation TO 'read committed';
+ALTER ROLE tempreg_admin SET timezone TO 'UTC';
+GRANT ALL PRIVILEGES ON DATABASE tempreg_postgres TO tempreg_admin;
 
+
+# Gunicorn configuration 
 
 [Unit]
 Description=gunicorn daemon
 After=network.target
 
 [Service]
-User=myposbook
+User=tempreg
 Group=www-data
-WorkingDirectory=/home/myposbook/myposbook/myposbook/
-ExecStart=/home/myposbook/venv/bin/gunicorn --access-logfile - --workers 3 --bind unix:/home/myposbook/myposbook.sock myposbook.wsgi:application
+WorkingDirectory=/home/tempreg/tempreg
+ExecStart=/home/tempreg/venv/bin/gunicorn --access-logfile - --workers 3 --bind unix:/home/tempreg.sock tempreg.wsgi:application
 
 [Install]
 WantedBy=multi-user.target
 
 
-
+# nginx 
 server {
     listen 80;
-    server_name myposbook.com.ng;
+    server_name tempreg.ng;
 
     location = /favicon.ico { access_log off; log_not_found off; }
     location /static/ {
-        root /home/myposbook/myposbook/myposbook;
+        root /home/tempreg/tempreg;
     }
 
     location / {
         include proxy_params;
-        proxy_pass http://unix:/home/myposbook/myposbook.sock;
+        proxy_pass http://unix:/home/tempreg.sock;
     }
 }
 
-ssh root@185.3.94.252
+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
 
-linode access
-sudo su myposbook
-S$69JTN6q6mpe#4
 
-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
+sudo nano /etc/nginx/sites-available/tempreg
+sudo ln -s /etc/nginx/sites-available/tempreg /etc/nginx/sites-enabled
 
-{% comment %} daemon reload features {% endcomment %}
+
 sudo systemctl daemon-reload && sudo systemctl restart gunicorn
-
-
-sudo nano /etc/nginx/sites-available/myposbook
-
-sudo ln -s /etc/nginx/sites-available/myposbook /etc/nginx/sites-enabled
-
-cp -r ./frontend/dashboard/static/stylesheets/dasboard.css ./myposbook/merchant_account/static/stylesheets
-cp -r ./frontend/static/stylesheets/style.css ./myposbook/home/static/stylesheets
-
-
-
-curl -L -X POST 'https://r5vdnl.api.infobip.com/sms/1/text/advanced' \
--H 'Authorization: 28033c78d0e92e1c0f04fdbb68023e71-52b58e02-d48b-45c5-a51b-0d4d055bb5d1' \
--H 'Content-Type: application/json' \
--H 'Accept: application/json' \
---data-raw '{
-  "messages": [
-    {
-      "from": "InfoSMS",
-      "destinations": [
-        {
-          "to": "23411714208"
-        }
-      ],
-      "text": "This is a sample message"
-    }
-  ]
-}'
-
-
-
-
-sudo nano /etc/supervisor/conf.d/celery.conf
-sudo nano /etc/supervisor/conf.d/celery-beat.conf
-
-sudo rm -rf /etc/supervisor/conf.d/celery.conf
-sudo rm -rf /etc/supervisor/conf.d/celery-beat.conf

@@ -67,8 +67,12 @@ WSGI_APPLICATION = 'temp.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': str(BASE_DIR / 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'tempreg_postgres',
+        'USER': 'tempreg_admin',
+        'PASSWORD': 'tempreg@22',
+        'HOST': 'localhost',
+        'PORT': 5432
     }
 }
 
@@ -120,7 +124,7 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-LOGIN_REDIRECT_URL = '/dashboard'
+LOGIN_REDIRECT_URL = '/create-profile'
 LOGIN_URL = '/login'
 LOGOUT_URL = '/logout'
 

@@ -42,7 +42,7 @@ class Profile(models.Model):
         ('ZA', 'Zamfara')
   )
   user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-  phone = models.PositiveIntegerField()
+  phone = models.BigIntegerField(default=0)
   state = models.CharField(max_length=20, choices=state_choices)
   city = models.CharField(max_length=20)
   date_of_birth = models.DateField(blank=True, null=True)
