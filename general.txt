@@ -29,7 +29,7 @@ After=network.target
 User=tempreg
 Group=www-data
 WorkingDirectory=/home/tempreg/tempreg
-ExecStart=/home/tempreg/venv/bin/gunicorn --access-logfile - --workers 3 --bind unix:/home/tempreg.sock tempreg.wsgi:application
+ExecStart=/home/tempreg/venv/bin/gunicorn --access-logfile - --workers 3 --bind unix:/home/tempreg/tempreg.sock temp.wsgi:application
 
 [Install]
 WantedBy=multi-user.target
