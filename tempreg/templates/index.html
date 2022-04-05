@@ -58,6 +58,9 @@
           {% if user.is_authenticated %}
           <li><a class="nav-link scrollto" href="{% url 'tempreg:dashboard' %}">Dashboard</a></li>
           {% endif %}
+          {% if perms.tempreg.special_status %}
+          <li><a class="nav-link scrollto" href="{% url 'tempreg:search' %}">Search</a></li>
+          {% endif %}
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->

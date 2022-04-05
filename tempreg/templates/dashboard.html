@@ -26,17 +26,20 @@
                                             {{ request.user.email }}
                                         </p>
                                         <p class="lead mx-3">Phone:
-                                           {{request.user.profile.phone}}
+                                           {{ request.user.profile.phone }}
                                         </p>
-                                        <p class="lead mx-3">Phone:
-                                            {{request.user.profile.city}}
+                                        <p class="lead mx-3">State:
+                                            {{ request.user.profile.state }}
+                                         </p>
+                                        <p class="lead mx-3">City:
+                                            {{ request.user.profile.city }}
                                          </p>
                                         <div class="row">
                                             <div class="col">   
-                                                <p class="lead mx-3">ID number: 0x0121</p>
+                                                <p class="lead mx-3">Tempreg Id: {{ request.user.profile.state }} {{ request.user.id }} </p>
                                             </div>
                                             <div class="col">
-                                                <a href="" class="btn btn-primary">Make Payment</a>
+                                                <a href="{% url 'tempreg:payment-wall' %}" class="btn btn-primary">Make Payment</a>
                                             </div>
                                         </div>
                                     </div>

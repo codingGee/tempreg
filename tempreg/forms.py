@@ -28,12 +28,17 @@ class UserEditForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ('first_name', 'last_name', 'email')
-        
+     
+class ProfileForm(forms.ModelForm):
+    
+    class Meta:
+        model = Profile
+        fields = ('phone', 'date_of_birth', 'photo', 'state', 'city')  
 # Edit Profile form 
 class ProfileEditForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ('date_of_birth', 'photo')
+        fields = ('phone', 'date_of_birth', 'photo', 'state', 'city')
         
 class CarPhoto(forms.ModelForm):
     class Meta:
@@ -43,3 +48,8 @@ class CarEditForm(forms.ModelForm):
     class Meta:
         model = Car
         exclude = ['user', ]
+        
+class StatesSearchForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = ['state', ]

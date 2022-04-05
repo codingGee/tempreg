@@ -14,7 +14,7 @@ urlpatterns = [
     path('dashboard', views.dashboard, name='dashboard'),
     path('login/', auth_views.LoginView.as_view(), name='login'),
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
-    path('settings/', views.settings, name='settings'),
+    path('settings/', views.settings_page, name='settings'),
     # change password urls 
     path('password_change/', auth_views.PasswordChangeView.as_view(), name="password_change"),
     path('password_change/done/', auth_views.PasswordChangeDoneView.as_view(), name='password_change_done'),
@@ -25,17 +25,23 @@ urlpatterns = [
     path('reset/done/', auth_views.PasswordResetCompleteView.as_view(), name='password_reset_complete'),
     # register url 
     path('register/', views.register, name='register'),
+    path('create-profile/', views.create_profile, name='create-profile'),
     path('edit/', views.edit, name='edit'),
     path('car_profile/', views.carProfile, name="car_profile"),
     path('car_edit/', views.carCreate, name="car_edit"),
     # car gallery
     path('gallery', views.gallery, name='gallery'),
     path('car_images', views.gallery_view, name="car_images" ),
+    path('payment-wall/', views.payment_wall, name="payment-wall" ),
+    path('payment-process/', views.payment_process, name="payment-process" ),
     # seach path 
     path('search/', views.SearchResultsView.as_view(), name='search'),
+    path('search-state/', views.StateSearchView.as_view(), name='search-state'),
+    path('search-state-done/<str:state>/', views.StateSearchDone.as_view(), name='search-state-done'),
     
     # public route
     path('', views.HomeView.as_view(), name="home" ),
+    
 ]
 
 if settings.DEBUG:
