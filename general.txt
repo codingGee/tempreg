@@ -47,7 +47,7 @@ server {
 
     location / {
         include proxy_params;
-        proxy_pass http://unix:/home/tempreg.sock;
+        proxy_pass http://unix:/home/tempreg/tempreg.sock;
     }
 }
 
