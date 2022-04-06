@@ -12,9 +12,8 @@
     <link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
     <!-- <link href="/static/css/bootstrap-icons.css" rel="stylesheet">
     <link href="/static/css/boxicons.min.css" rel="stylesheet"> -->
-    <link rel="shortcut icon" href="/static/image/favicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="https://cdn4.vectorstock.com/i/thumb-large/93/48/alphabet-t-logo-combined-with-red-square-vector-21719348.jpg" type="image/x-icon">
     <link href="/static/css/glightbox.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="/static/css/boxicons.min.css">
     <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
     <link href="/static/css/remixicon.css" rel="stylesheet">
     <link href="/static/css/swiper-bundle.min.css" rel="stylesheet">
@@ -35,7 +34,7 @@
  <section id="hero">
     <div class="hero-container">
       <h1>Welcome to Tempreg</h1>
-      <h2>We are team of Vehicle Tracking Experts</h2>
+      <h2>Tempreg provides you unique security codes and Database for unregistered vehicles</h2>
       <a href="{% url 'tempreg:register' %}" class="btn-get-started scrollto">Get Started</a>
     </div>
   </section><!-- End Hero -->
@@ -44,7 +43,7 @@
   <header id="header" class="d-flex align-items-center ">
     <div class="container-fluid d-flex align-items-center justify-content-lg-between">
 
-      <h1 class="logo me-auto me-lg-0"><a href="/">Tempreg</a></h1>
+      <h1 class="logo me-auto me-lg-0"><a href="{% url 'tempreg:home' %}">Tempreg</a></h1>
       <!-- Uncomment below if you prefer to use an image logo -->
       <!-- <a href="index.html" class="logo me-auto me-lg-0"><img src="/static/image/logo.png" alt="" class="img-fluid"></a>-->
 
@@ -54,25 +53,13 @@
           <li><a class="nav-link scrollto" href="#about">About</a></li>
           <li><a class="nav-link scrollto" href="#services">Services</a></li>
           <li><a class="nav-link scrollto " href="#portfolio">Gallery</a></li>
-          <li><a class="nav-link scrollto" href="#team">Team</a></li>
-          <li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>
-            <ul>
-              <li><a href="#">Drop Down 1</a></li>
-              <li class="dropdown"><a href="#"><span>Deep Drop Down</span> <i class="bi bi-chevron-right"></i></a>
-                <ul>
-                  <li><a href="#">Deep Drop Down 1</a></li>
-                  <li><a href="#">Deep Drop Down 2</a></li>
-                  <li><a href="#">Deep Drop Down 3</a></li>
-                  <li><a href="#">Deep Drop Down 4</a></li>
-                  <li><a href="#">Deep Drop Down 5</a></li>
-                </ul>
-              </li>
-              <li><a href="#">Drop Down 2</a></li>
-              <li><a href="#">Drop Down 3</a></li>
-              <li><a href="#">Drop Down 4</a></li>
-            </ul>
-          </li>
           <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
+          {% if user.is_authenticated %}
+          <li><a class="nav-link scrollto" href="{% url 'tempreg:dashboard' %}">Dashboard</a></li>
+          {% endif %}
+          {% if perms.tempreg.special_status %}
+          <li><a class="nav-link scrollto" href="{% url 'tempreg:search' %}">Search</a></li>
+          {% endif %}
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
@@ -100,20 +87,20 @@
         <div class="row content">
           <div class="col-lg-6">
             <p class="text-white fw-bold">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-              magna aliqua.
+              Tempreg is a security organization that provides you unique security codes and Database for unregistered vehicles. 
+              This helps on safe guarding peoples vehicles. In collaboration with the Nigerian Police, stolen vehicles can be traced, tracked and recovered.
             </p>
             <ul>
-              <li class="text-white fw-bold"><i class="ri-check-double-line"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat</li>
-              <li class="text-white fw-bold"><i class="ri-check-double-line"></i> Duis aute irure dolor in reprehenderit in voluptate velit</li>
-              <li class="text-white fw-bold"><i class="ri-check-double-line"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat</li>
+              <li class="text-white fw-bold"><i class="ri-check-double-line"></i> Provides you unique security codes </li>
+              <li class="text-white fw-bold"><i class="ri-check-double-line"></i> Provides secured Database system for unregistered vehicles</li>
+              <li class="text-white fw-bold"><i class="ri-check-double-line"></i> Stolen vehicles can be traced, tracked and recovered</li>
             </ul>
           </div>
           <div class="col-lg-6 pt-4 pt-lg-0">
             <p class="text-white fw-bold">
-              Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-              velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-              culpa qui officia deserunt mollit anim id est laborum.
+              Tempreg welcomes you to our website. How secured is your car? Do you value your car that much? why not secure it today? Incidents of car robbery or Car theft happens every day in every country all over the world. Nigeria is not an exemption, 
+              we hear in the news everyday, how cars were rob at gun point, some are even rob by the the driver’s sheer carelessness. You can’t take away the fact that our security system is not as responsive as the western world. A report of a car theft will only cost you more money to start a search with the police. Our country’s system will demand you to get a report that your car was indeed stolen and after that, 
+              you still will be required to pay the search fee even though there is no guarantee that your car will be found
             </p>
             <a href="#" class="btn-learn-more">Learn More</a>
           </div>
@@ -162,7 +149,8 @@
             <div class="card" style='background-image: url("https://images.pexels.com/photos/842793/pexels-photo-842793.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260");'>
               <div class="card-body">
                 <h5 class="card-title"><a href="">Our Mission</a></h5>
-                <p class="card-text">Lorem ipsum dolor sit amet, consectetur elit, sed do eiusmod tempor ut labore et dolore magna aliqua.</p>
+                <p class="card-text">Our mission has always been to safe guard all cars in Nigeria by providing quality and efficient car tracking services for cheap.
+                  To provide unique security codes and Database for unregistered vehicles.</p>
                 <div class="read-more"><a href="#"><i class="bi bi-arrow-right"></i> Read More</a></div>
               </div>
             </div>
@@ -171,7 +159,7 @@
             <div class="card" style='background-image: url("https://autojosh.com/wp-content/uploads/2020/03/car-track-nigeria-autojosh.jpg");'>
               <div class="card-body">
                 <h5 class="card-title"><a href="">Our Plan</a></h5>
-                <p class="card-text">Sed ut perspiciatis unde omnis iste natus error sit voluptatem doloremque laudantium, totam rem.</p>
+                <p class="card-text">To help safe guard vehicles of individual across Nigeria.</p>
                 <div class="read-more"><a href="#"><i class="bi bi-arrow-right"></i> Read More</a></div>
               </div>
             </div>
@@ -181,7 +169,7 @@
             <div class="card" style='background-image: url("https://images.pexels.com/photos/3874332/pexels-photo-3874332.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");'>
               <div class="card-body">
                 <h5 class="card-title"><a href="">Our Vision</a></h5>
-                <p class="card-text">Nemo enim ipsam voluptatem quia voluptas sit aut odit aut fugit, sed quia magni dolores.</p>
+                <p class="card-text">To cover all of Nigeria and Africa with Tempreg services for safe guarding people's cars.</p>
                 <div class="read-more"><a href="#"><i class="bi bi-arrow-right"></i> Read More</a></div>
               </div>
             </div>
@@ -190,7 +178,7 @@
             <div class="card" style='background-image: url("https://images.pexels.com/photos/4157182/pexels-photo-4157182.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");'>
               <div class="card-body">
                 <h5 class="card-title"><a href="">Our Care</a></h5>
-                <p class="card-text">Nostrum eum sed et autem dolorum perspiciatis. Magni porro quisquam laudantium voluptatem.</p>
+                <p class="card-text">We love cars! Our relationship with it is so strong that all we want to do is make certain that every Nigerian understand its importance.</p>
                 <div class="read-more"><a href="#"><i class="bi bi-arrow-right"></i> Read More</a></div>
               </div>
             </div>
@@ -241,52 +229,52 @@
 
         <div class="section-title">
           <h2 class="text-white fw-bolder">Services</h2>
-          <p class="text-white bold">Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+          <p class="text-white bold">With years’ of experience and a stolen vehicle recovery rate of over 97% and continuous investment in research and development, we are committed to making sure your vehicles are safe and protected.</p>
         </div>
 
         <div class="row">
           <div class="col-lg-4 col-md-6">
             <div class="icon-box">
               <div class="icon"><i class="bi bi-briefcase" style="color: #ff689b;"></i></div>
-              <h4 class="title"><a href="">Lorem Ipsum</a></h4>
-              <p class="description">Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident</p>
+              <h4 class="title"><a href="">Vehicle Tracking</a></h4>
+              <p class="description">Track your vehicle’s speed,current location and status anytime, anywhere</p>
             </div>
           </div>
           <div class="col-lg-4 col-md-6 mt-4 mt-md-0">
             <div class="icon-box">
               <div class="icon"><i class="bi bi-card-checklist" style="color: #e9bf06;"></i></div>
-              <h4 class="title"><a href="">Dolor Sitema</a></h4>
-              <p class="description">Minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat tarad limino ata</p>
+              <h4 class="title"><a href="">Live Map Tracking</a></h4>
+              <p class="description">See every details of your car’s location. See full street address on our live map</p>
             </div>
           </div>
 
           <div class="col-lg-4 col-md-6 mt-4 mt-lg-0">
             <div class="icon-box">
               <div class="icon"><i class="bi bi-bar-chart" style="color: #3fcdc7;"></i></div>
-              <h4 class="title"><a href="">Sed ut perspiciatis</a></h4>
-              <p class="description">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur</p>
+              <h4 class="title"><a href="">Track on The Move</a></h4>
+              <p class="description">You can track from any location with your mobile phone. Even with a nokia 3310 Phone.</p>
             </div>
           </div>
           <div class="col-lg-4 col-md-6 mt-4">
             <div class="icon-box">
               <div class="icon"><i class="bi bi-binoculars" style="color:#41cf2e;"></i></div>
-              <h4 class="title"><a href="">Magni Dolores</a></h4>
-              <p class="description">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+              <h4 class="title"><a href="">Fleet Monitoring</a></h4>
+              <p class="description">Our system grows with you. You can enjoy our fleet management packages if you have more cars</p>
             </div>
           </div>
 
           <div class="col-lg-4 col-md-6 mt-4">
             <div class="icon-box">
               <div class="icon"><i class="bi bi-brightness-high" style="color: #d6ff22;"></i></div>
-              <h4 class="title"><a href="">Nemo Enim</a></h4>
-              <p class="description">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque</p>
+              <h4 class="title"><a href="">Affordable Charges</a></h4>
+              <p class="description">Our prices are affordable with good rated  system</p>
             </div>
           </div>
           <div class="col-lg-4 col-md-6 mt-4">
             <div class="icon-box">
               <div class="icon"><i class="bi bi-calendar4-week" style="color: #4680ff;"></i></div>
-              <h4 class="title"><a href="">Eiusmod Tempor</a></h4>
-              <p class="description">Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi</p>
+              <h4 class="title"><a href="">Reports On Demand</a></h4>
+              <p class="description">Communicate with your car on the go. Get instant report on your mobile phone whenever you desire</p>
             </div>
           </div>
         </div>
@@ -300,7 +288,8 @@
 
         <div class="section-title">
           <h2>Testimonials</h2>
-          <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+          <p> 
+            We have had the pleasure of working with many persons. Below are some happy client's testimony we work with.</p>
         </div>
 
         <div class="testimonials-slider swiper" data-aos="fade-up" data-aos-delay="100">
@@ -310,7 +299,7 @@
               <div class="testimonial-item">
                 <p>
                   <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                  Proin iaculis purus consequat sem cure digni ssim donec porttitora entum suscipit rhoncus. Accusantium quam, ultricies eget id, aliquam eget nibh et. Maecen aliquam, risus at semper.
+                  Thanks for tracking my wife’s car. The process was easy and fast, in less than 30minutes they were done.
                   <i class="bx bxs-quote-alt-right quote-icon-right"></i>
                 </p>
                 <img src="/static/image/testimonials/testimonials-1.jpg" class="testimonial-img" alt="">
@@ -323,7 +312,7 @@
               <div class="testimonial-item">
                 <p>
                   <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                  Export tempor illum tamen malis malis eram quae irure esse labore quem cillum quid cillum eram malis quorum velit fore eram velit sunt aliqua noster fugiat irure amet legam anim culpa.
+                  I buy car tracking devices from Tempreg and they are the best. I recommend them always
                   <i class="bx bxs-quote-alt-right quote-icon-right"></i>
                 </p>
                 <img src="/static/image/testimonials/testimonials-2.jpg" class="testimonial-img" alt="">
@@ -336,7 +325,7 @@
               <div class="testimonial-item">
                 <p>
                   <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                  Enim nisi quem export duis labore cillum quae magna enim sint quorum nulla quem veniam duis minim tempor labore quem eram duis noster aute amet eram fore quis sint minim.
+                  My car got stolen at a gun point along, I didn't resist and I called my son at home to stop the vehicle engine for me after 20 minutes. I got my vehicle without much downtime to my business
                   <i class="bx bxs-quote-alt-right quote-icon-right"></i>
                 </p>
                 <img src="/static/image/testimonials/testimonials-3.jpg" class="testimonial-img" alt="">
@@ -349,7 +338,7 @@
               <div class="testimonial-item">
                 <p>
                   <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                  Fugiat enim eram quae cillum dolore dolor amet nulla culpa multos export minim fugiat minim velit minim dolor enim duis veniam ipsum anim magna sunt elit fore quem dolore labore illum veniam.
+                  Tempreg helped me traced, tracked and recovered my car in less than weeks of searching. I can not thank them enough! Thanks!!
                   <i class="bx bxs-quote-alt-right quote-icon-right"></i>
                 </p>
                 <img src="/static/image/testimonials/testimonials-4.jpg" class="testimonial-img" alt="">
@@ -362,7 +351,7 @@
               <div class="testimonial-item">
                 <p>
                   <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                  Quis quorum aliqua sint quem legam fore sunt eram irure aliqua veniam tempor noster veniam enim culpa labore duis sunt culpa nulla illum cillum fugiat legam esse veniam culpa fore nisi cillum quid.
+                  Ever since I have Tempreg service in my car, I have been able to get hold of my driver anytime I want. What a such amazing service. I recommend this for every vehicle."
                   <i class="bx bxs-quote-alt-right quote-icon-right"></i>
                 </p>
                 <img src="/static/image/testimonials/testimonials-5.jpg" class="testimonial-img" alt="">
@@ -384,7 +373,7 @@
 
         <div class="text-center">
           <h3>Call To Action</h3>
-          <p> Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+          <h1 class="text-white"> Secure your Car Today with Tempreg!.</h1>
           <a class="cta-btn" href="{% url 'tempreg:login' %}">Login</a>
         </div>
 
@@ -504,107 +493,20 @@
       </div>
     </section><!-- End Portfolio Section -->
 
-    <!-- ======= Team Section ======= -->
-    <section id="team" class="team section-bg">
-      <div class="container">
-
-        <div class="section-title">
-          <h2>Team</h2>
-          <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
-        </div>
-
-        <div class="row">
-
-          <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
-            <div class="member">
-              <div class="member-img">
-                <img src="/static/image/team/team-1.jpg" class="img-fluid" alt="">
-                <div class="social">
-                  <a href=""><i class="bi bi-twitter"></i></a>
-                  <a href=""><i class="bi bi-facebook"></i></a>
-                  <a href=""><i class="bi bi-instagram"></i></a>
-                  <a href=""><i class="bi bi-linkedin"></i></a>
-                </div>
-              </div>
-              <div class="member-info">
-                <h4>Walter White</h4>
-                <span>Chief Executive Officer</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
-            <div class="member">
-              <div class="member-img">
-                <img src="/static/image/team/team-2.jpg" class="img-fluid" alt="">
-                <div class="social">
-                  <a href=""><i class="bi bi-twitter"></i></a>
-                  <a href=""><i class="bi bi-facebook"></i></a>
-                  <a href=""><i class="bi bi-instagram"></i></a>
-                  <a href=""><i class="bi bi-linkedin"></i></a>
-                </div>
-              </div>
-              <div class="member-info">
-                <h4>Sarah Jhonson</h4>
-                <span>Product Manager</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
-            <div class="member">
-              <div class="member-img">
-                <img src="/static/image/team/team-3.jpg" class="img-fluid" alt="">
-                <div class="social">
-                  <a href=""><i class="bi bi-twitter"></i></a>
-                  <a href=""><i class="bi bi-facebook"></i></a>
-                  <a href=""><i class="bi bi-instagram"></i></a>
-                  <a href=""><i class="bi bi-linkedin"></i></a>
-                </div>
-              </div>
-              <div class="member-info">
-                <h4>William Anderson</h4>
-                <span>CTO</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
-            <div class="member">
-              <div class="member-img">
-                <img src="/static/image/team/team-4.jpg" class="img-fluid" alt="">
-                <div class="social">
-                  <a href=""><i class="bi bi-twitter"></i></a>
-                  <a href=""><i class="bi bi-facebook"></i></a>
-                  <a href=""><i class="bi bi-instagram"></i></a>
-                  <a href=""><i class="bi bi-linkedin"></i></a>
-                </div>
-              </div>
-              <div class="member-info">
-                <h4>Amanda Jepson</h4>
-                <span>Accountant</span>
-              </div>
-            </div>
-          </div>
-
-        </div>
-
-      </div>
-    </section><!-- End Team Section -->
 
     <!-- ======= Pricing Section ======= -->
     <section id="pricing" class="pricing">
       <div class="container">
 
         <div class="section-title">
-          <h2>Pricing</h2>
-          <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+          <h2 class="text-white font-weight-bolder">Pricing</h2>
+          <p class="text-white font-weight-bold">CAR TRACKING IN NIGERIA HAS NEVER BEEN THIS AFFORDABLE!.</p>
         </div>
 
         <div class="row">
 
           <div class="col-lg-3 col-md-6">
-            <div class="box">
+            <!-- <div class="box">
               <h3>Free</h3>
               <h4><sup>$</sup>0<span> / month</span></h4>
               <ul>
@@ -617,28 +519,29 @@
               <div class="btn-wrap">
                 <a href="#" class="btn-buy">Buy Now</a>
               </div>
-            </div>
+            </div> -->
           </div>
 
-          <div class="col-lg-3 col-md-6 mt-4 mt-md-0">
+          <div class="col-lg-6 col-md-6 mt-4 mt-md-0">
             <div class="box featured">
-              <h3>Business</h3>
-              <h4><sup>$</sup>19<span> / month</span></h4>
+              <h3>Start up price</h3>
+              <h4><sup>&#x20A6;</sup>10,000</h4>
+              <h4><sup>&#x20A6;</sup>5000<span> / month</span></h4>
               <ul>
-                <li>Aida dere</li>
-                <li>Nec feugiat nisl</li>
-                <li>Nulla at volutpat dola</li>
-                <li>Pharetra massa</li>
-                <li class="na">Massa ultricies mi</li>
+                <li>Vehicle Registration</li>
+                <li>Car Support</li>
+                <li>Security Insurance</li>
+                <li>Vehicle Tracking Number</li>
+                <!-- <li class="na">Massa ultricies mi</li> -->
               </ul>
               <div class="btn-wrap">
-                <a href="#" class="btn-buy">Buy Now</a>
+                <a href="{% url 'tempreg:login' %}" class="btn-buy">Buy Now</a>
               </div>
             </div>
           </div>
 
-          <div class="col-lg-3 col-md-6 mt-4 mt-lg-0">
-            <div class="box">
+          <!-- <div class="col-lg-3 col-md-6 mt-4 mt-lg-0"> -->
+            <!-- <div class="box">
               <h3>Developer</h3>
               <h4><sup>$</sup>29<span> / month</span></h4>
               <ul>
@@ -651,11 +554,11 @@
               <div class="btn-wrap">
                 <a href="#" class="btn-buy">Buy Now</a>
               </div>
-            </div>
-          </div>
+            </div> -->
+          <!-- </div> -->
 
           <div class="col-lg-3 col-md-6 mt-4 mt-lg-0">
-            <div class="box">
+            <!-- <div class="box">
               <span class="advanced">Advanced</span>
               <h3>Ultimate</h3>
               <h4><sup>$</sup>49<span> / month</span></h4>
@@ -669,11 +572,9 @@
               <div class="btn-wrap">
                 <a href="#" class="btn-buy">Buy Now</a>
               </div>
-            </div>
+            </div> -->
           </div>
-
         </div>
-
       </div>
     </section><!-- End Pricing Section -->
 
@@ -683,52 +584,73 @@
 
         <div class="section-title">
           <h2>Frequently Asked Questions</h2>
-          <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+          <p>These are the frequent questions asked by users.</p>
         </div>
 
         <div class="faq-list">
           <ul>
             <li data-aos="fade-up">
-              <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" class="collapse" data-bs-target="#faq-list-1">Non consectetur a erat nam at lectus urna duis? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+              <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" class="collapse" data-bs-target="#faq-list-1">What warranty comes with Tempreg tracking?  <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
               <div id="faq-list-1" class="collapse show" data-bs-parent=".faq-list">
                 <p>
-                  Feugiat pretium nibh ipsum consequat. Tempus iaculis urna id volutpat lacus laoreet non curabitur gravida. Venenatis lectus magna fringilla urna porttitor rhoncus dolor purus non.
+                  We give 12 months warranty on our device less physical/accidental damage to the device. We have customers across the country that have been using our device/service satisfactorily for more than 5-8 years.
                 </p>
               </div>
             </li>
 
             <li data-aos="fade-up" data-aos-delay="100">
-              <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#faq-list-2" class="collapsed">Feugiat scelerisque varius morbi enim nunc? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+              <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#faq-list-2" class="collapsed">Differences between manual and online tracking? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
               <div id="faq-list-2" class="collapse" data-bs-parent=".faq-list">
                 <p>
-                  Dolor sit amet consectetur adipiscing elit pellentesque habitant morbi. Id interdum velit laoreet id donec ultrices. Fringilla phasellus faucibus scelerisque eleifend donec pretium. Est pellentesque elit ullamcorper dignissim. Mauris ultrices eros in cursus turpis massa tincidunt dui.
+                  Basic Subscribers only have access to track manually which is the default tracking. To track manually, Customer need to dial assigned tracker number (Usually MTN number), in few seconds, tracker will reply back with google link (If there is airtime on the line, each SMS cost N4), Customer will click on the google link to see their vehicle on google map or on their phone browser depending on their phone default application settings.
+                </p>
+                <p>
+                  On the other hand, Premium and Advanced subscribers get to track beyond manual tracking. An account would be created for them on our server with Username and Password (Just like demo shown above). They can access their vehicles on our mobile App and also on web browsers on all devices including Smart TV (Samsung with inbuilt browser)
                 </p>
               </div>
             </li>
 
             <li data-aos="fade-up" data-aos-delay="200">
-              <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#faq-list-3" class="collapsed">Dolor sit amet consectetur adipiscing elit? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+              <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#faq-list-3" class="collapsed">why do i need to pay a renewal fee of N5000 ? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
               <div id="faq-list-3" class="collapse" data-bs-parent=".faq-list">
                 <p>
-                  Eleifend mi in nulla posuere sollicitudin aliquam ultrices sagittis orci. Faucibus pulvinar elementum integer enim. Sem nulla pharetra diam sit amet nisl suscipit. Rutrum tellus pellentesque eu tincidunt. Lectus urna duis convallis convallis tellus. Urna molestie at elementum eu facilisis sed odio morbi quis
+                  We charge N5,000 per vehicle for continue usage of our server to track your vehicles via our mobile App and web browser on your phone, tablet or computer after a year. This allows us to continue to serve you better year after year.
+                </p>
+                <p>
+                  Airtime is needed to get SMS feedback from the tracking device for locations and other commands’ responses. N1,000 in a year would be sufficient.
+                </p>
+                <p>
+                  DATA: Data is needed on the tracker SIM for timely location updates to the server where customer can login via App and Browser to access where their cars are. N2,000 data in a year is enough pa vehicle.
+                </p>
+                <p>
+                  Commission: The Nigeria Police recieves a commission that enable vehicle security and vehicle enforcement.  
                 </p>
               </div>
             </li>
 
             <li data-aos="fade-up" data-aos-delay="300">
-              <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#faq-list-4" class="collapsed">Tempus quam pellentesque nec nam aliquam sem et tortor consequat? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+              <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#faq-list-4" class="collapsed">why should I register with Tempreg? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
               <div id="faq-list-4" class="collapse" data-bs-parent=".faq-list">
                 <p>
-                  Molestie a iaculis at erat pellentesque adipiscing commodo. Dignissim suspendisse in est ante in. Nunc vel risus commodo viverra maecenas accumsan. Sit amet nisl suscipit adipiscing bibendum est. Purus gravida quis blandit turpis cursus in.
+                  Tempreg provides more than vehicle security. It creates a relationship with vehicles and its safety especially new shipped vehicles.
                 </p>
               </div>
             </li>
-
+            
+            <li data-aos="fade-up" data-aos-delay="300">
+              <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#faq-list-4" class="collapsed">Can I call you anytime in case of emergency ? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+              <div id="faq-list-4" class="collapse" data-bs-parent=".faq-list">
+                <p>
+                  Yes we are available 24/7. We will share our hotlines with you after payment.
+                </p>
+              </div>
+            </li>
+            
             <li data-aos="fade-up" data-aos-delay="400">
-              <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#faq-list-5" class="collapsed">Tortor vitae purus faucibus ornare. Varius vel pharetra vel turpis nunc eget lorem dolor? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+              <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#faq-list-5" class="collapsed">Is your company Licensed to track vehicles? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
               <div id="faq-list-5" class="collapse" data-bs-parent=".faq-list">
                 <p>
-                  Laoreet sit amet cursus sit amet dictum sit amet justo. Mauris vitae ultricies leo integer malesuada nunc vel. Tincidunt eget nullam non nisi est sit amet. Turpis nunc eget lorem dolor sed. Ut venenatis tellus in metus vulputate eu scelerisque.
+                  Yes we are Licensed by Nigeria Communications Commission and enforced by law.
                 </p>
               </div>
             </li>
@@ -744,8 +666,8 @@
       <div class="container">
 
         <div class="section-title">
-          <h2>Contact</h2>
-          <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+          <h2 class="text-white font-weight-bolder">Contact</h2>
+          <p class="text-white font-weight-bold">For more inquires and other informations not found here please do not hesistate to contact us through the following.</p>
         </div>
 
         <div>
@@ -755,7 +677,7 @@
         <div class="row mt-5">
 
           <div class="col-lg-4">
-            <div class="info">
+            <div class="info rounded">
               <div class="address">
                 <i class="bi bi-geo-alt"></i>
                 <h4>Location:</h4>
@@ -779,19 +701,23 @@
           </div>
 
           <div class="col-lg-8 mt-5 mt-lg-0">
-            <form action="forms" method="post" role="form" class="php-email-form">
+            <form action="forms" method="post" role="form" class="rounded php-email-form p-md-2">
               <div class="row">
                 <div class="col-md-6 form-group">
+                  <label for="name" class="form-label mx-2">Name</label>
                   <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
                 </div>
                 <div class="col-md-6 form-group mt-3 mt-md-0">
+                  <label for="name" class="form-label">Email</label>
                   <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
                 </div>
               </div>
               <div class="form-group mt-3">
+                <label for="name" class="form-label mx-2">Subject</label>
                 <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required>
               </div>
               <div class="form-group mt-3">
+                <label for="name" class="form-label mx-2">Message</label>
                 <textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
               </div>
               <div class="my-3">
@@ -821,7 +747,7 @@
         <div class="row  justify-content-center">
           <div class="col-lg-6">
             <h3>Tempreg</h3>
-            <p>Et aut eum quis fuga eos sunt ipsa nihil. Labore corporis magni eligendi fuga maxime saepe commodi placeat.</p>
+            <p>Tempreg provides you unique security codes and Database for unregistered vehicles.</p>
           </div>
         </div>
 

@@ -1,0 +1,39 @@
+{% extends "base/header.html" %}
+{% block title %}Create Car Profile{% endblock %}
+{% block content %}
+{% load widget_tweaks %}
+<div class="wrapper d-flex align-items-stretch">
+    {% include 'base/dashboard_nav.html' %}
+    <div id="content" class="p-4 p-md-5 pt-5">
+        <h1 class="mt-4">Car Profile</h1>
+        <h4 class="lead mb-3"> Hello, {{ request.user.first_name }}
+        </h4>
+        <div class="card">
+            <h2 class="text-center m-1">
+                <i class="fas fa-car"></i> View Car Gallery
+            </h2>
+            <div class="row m-3">
+                <!-- {% for car in car_image %} -->
+                <div class="col-md-3">
+                    <!-- {{ car.user.first_name }} -->
+                    <img src="{{ car.front_image.url }}" class="img-responsive" style="width: 100%; float: left; margin-right: 10px;" />
+                </div>
+                <div class="col-md-3">
+                    <!-- {{ car.user.first_name }} -->
+                    <img src="{{ car.front_image.url }}" class="img-responsive" style="width: 100%; float: left; margin-right: 10px;" />
+                </div>
+                <div class="col-md-3">
+                    <!-- {{ car.user.first_name }} -->
+                    <img src="{{ car.back_image.url }}" class="img-responsive" style="width: 100%; float: left; margin-right: 10px;" />
+                </div>
+                <div class="col-md-3">
+                    <!-- {{ car.user.first_name }} -->
+                    <img src="{{ car.right_side.url }}" class="img-responsive" style="width: 100%; float: left; margin-right: 10px;" />
+                </div>
+                <!-- {% endfor %} -->
+            </div>
+        </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

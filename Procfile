@@ -1,1 +1,2 @@
-web:gunicorn tempreg.wsgi --log-file -
+web: gunicorn temp.wsgi --log-file -
+release: python manage.py migrate

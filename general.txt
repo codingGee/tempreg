@@ -1,0 +1,61 @@
+source venv/bin/activate && cd tempreg
+python manage.py runserver localhost:9234
+
+tEm@22preg
+
+ssh root@159.223.15.102
+
+pirateworldcc
+
+'' SELECT 'DROP TABLE IF EXISTS "' || tempreg || '" CASCADE;' from pg_tables WHERE schemaname = 'public'; ''
+
+CREATE DATABASE tempreg_postgres;
+CREATE USER tempreg_admin WITH PASSWORD 'tempreg@22';
+
+
+ALTER ROLE tempreg_admin SET client_encoding TO 'utf8';
+ALTER ROLE tempreg_admin SET default_transaction_isolation TO 'read committed';
+ALTER ROLE tempreg_admin SET timezone TO 'UTC';
+GRANT ALL PRIVILEGES ON DATABASE tempreg_postgres TO tempreg_admin;
+
+
+# Gunicorn configuration 
+
+[Unit]
+Description=gunicorn daemon
+After=network.target
+
+[Service]
+User=tempreg
+Group=www-data
+WorkingDirectory=/home/tempreg/tempreg
+ExecStart=/home/tempreg/venv/bin/gunicorn --access-logfile - --workers 3 --bind unix:/home/tempreg/tempreg.sock temp.wsgi:application
+
+[Install]
+WantedBy=multi-user.target
+
+
+# nginx 
+server {
+    listen 80;
+    server_name tempreg.ng;
+
+    location = /favicon.ico { access_log off; log_not_found off; }
+    location /static/ {
+        root /home/tempreg/tempreg;
+    }
+
+    location / {
+        include proxy_params;
+        proxy_pass http://unix:/home/tempreg/tempreg.sock;
+    }
+}
+
+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
+
+
+sudo nano /etc/nginx/sites-available/tempreg
+sudo ln -s /etc/nginx/sites-available/tempreg /etc/nginx/sites-enabled
+
+
+sudo systemctl daemon-reload && sudo systemctl restart gunicorn
