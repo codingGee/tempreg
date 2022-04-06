@@ -1,0 +1,22 @@
+.searchBar {
+    /* width: 50%; */
+    height: 32px;
+    border-radius: 3px;
+    border: 1px solid #eaeaea;
+    padding: 5px 10px;
+    font-size: 14px;
+}
+
+#searchWrapper {
+    position: relative;
+}
+
+#searchWrapper::after {
+    content: '🔍';
+    position: relative;
+    top: 4px;
+    right: 20px;
+}
+body {
+    background: linear-gradient(to right, rgb(255, 11, 11), rgb(99, 0, 0));
+}
