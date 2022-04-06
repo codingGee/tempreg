@@ -11,6 +11,9 @@
       <input name="q" type="text" placeholder="Search..." class="searchBar">
     </form>
   </div>
+  <div class="mt-md-4">
+    <p class="text-center text-white">Search users in a <a class="font-weight-bolder" href="{% url 'tempreg:search-state' %}" target="_blank" rel="noopener noreferrer">state</a> ?</p>
+  </div>
 
   <div class="container mt-5">
     {% for user in object_list %}
@@ -34,8 +37,10 @@
       </div>
     </div>
     {% endfor %}
-
   </div>
+  <div style="position:relative; top: 280px;">
+    <h1 class="text-center mt-5 text-white font-weight-bolder">Only Approved users have access to this page!</h1>
+</div>
 </div>
 
 {% endblock %}
