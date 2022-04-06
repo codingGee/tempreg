@@ -3,7 +3,7 @@ from .models import Gallery, Profile, Car
 
 @admin.register(Profile)
 class ProfileAdmin(admin.ModelAdmin):
-    list_display = ['user', 'date_of_birth', 'photo', 'phone', 'city']
+    list_display = ['user', 'date_of_birth', 'photo', 'phone', 'state', 'city']
     
 @admin.register(Gallery)
 class CarImage(admin.ModelAdmin):

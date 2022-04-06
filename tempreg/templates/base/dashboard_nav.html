@@ -13,10 +13,10 @@
                 <a href="{% url 'tempreg:dashboard'%}"><span class="fa fa-home mr-3"></span> Home</a>
             </li>
             <li>
-                <a href="{% url 'tempreg:create-profile' %}"><span class="fa fa-user mr-3"></span>Create Profile</a>
+                <a href="{% url 'tempreg:create-profile' %}" id="popover" data-trigger="hover"><span class="fa fa-user mr-3"></span>Create Profile</a>
             </li>
             <li>
-                <a href="{% url 'tempreg:car_edit'%}"><span class="fa fa-car mr-3"></span>Create Car Info</a>
+                <a href="{% url 'tempreg:payment-wall'%}"><span class="fa fa-car mr-3"></span>Create Car Info</a>
             </li>
             <li>
                 <a href="{% url 'tempreg:car_profile'%}"><span class="fa fa-car mr-3"></span> View Car Info</a>
@@ -52,4 +52,7 @@
             </p>
         </div>
     </div>
+    <script>
+        $("#popover").popover({ trigger: "hover" });
+    </script>
 </nav>

@@ -7,7 +7,6 @@ ssh root@159.223.15.102
 
 pirateworldcc
 
-'' SELECT 'DROP TABLE IF EXISTS "' || tempreg || '" CASCADE;' from pg_tables WHERE schemaname = 'public'; ''
 
 CREATE DATABASE tempreg_postgres;
 CREATE USER tempreg_admin WITH PASSWORD 'tempreg@22';
