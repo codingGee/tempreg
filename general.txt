@@ -7,7 +7,6 @@ ssh root@159.223.15.102
 
 pirateworldcc
 
-'' SELECT 'DROP TABLE IF EXISTS "' || tempreg || '" CASCADE;' from pg_tables WHERE schemaname = 'public'; ''
 
 CREATE DATABASE tempreg_postgres;
 CREATE USER tempreg_admin WITH PASSWORD 'tempreg@22';
@@ -57,5 +56,9 @@ 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
 sudo nano /etc/nginx/sites-available/tempreg
 sudo ln -s /etc/nginx/sites-available/tempreg /etc/nginx/sites-enabled
 
+sudo systemctl restart nginx
 
 sudo systemctl daemon-reload && sudo systemctl restart gunicorn
+
+45, 40, 3, 28, 24
+lck nm

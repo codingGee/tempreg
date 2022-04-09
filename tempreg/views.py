@@ -1,3 +1,6 @@
+from django.shortcuts import render
+
+# Create your views here.
 from django.contrib import messages
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
@@ -25,6 +28,7 @@ def user_login(request):
             if user is not None:
                 if user.is_active:
                     login(request, user)
+                    messages.success(request, 'Please proceed to create profile')
                     return HttpResponse('Authenicated Successful')
                 else:
                     return HttpResponse('Disabled account')
@@ -181,6 +185,7 @@ class SearchResultsView(PermissionRequiredMixin, ListView):
 # public views 
 class HomeView(TemplateView):
     template_name = 'index.html'
+    success_message = "Please proceed to create Profile"
     
 # @method_decorator(login_required, name='dispatch')
 class StateSearchView(FormView):
